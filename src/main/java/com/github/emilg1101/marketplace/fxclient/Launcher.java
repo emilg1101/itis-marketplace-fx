@@ -1,9 +1,7 @@
 package com.github.emilg1101.marketplace.fxclient;
 
+import com.github.emilg1101.marketplace.fxclient.loader.StageLoader;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Launcher extends Application {
@@ -13,10 +11,6 @@ public class Launcher extends Application {
     }
 
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass()
-                .getResource("/view/fxml/main.fxml"));
-        stage.setTitle("JavaFX Maven Spring");
-        stage.setScene(new Scene(root));
-        stage.show();
+        StageLoader.loadMain().show();
     }
 }
