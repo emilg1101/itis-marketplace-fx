@@ -1,11 +1,14 @@
 package com.github.emilg1101.marketplace.fxclient;
 
+import com.github.emilg1101.marketplace.fxclient.config.AppConfig;
+import com.github.emilg1101.marketplace.fxclient.loader.StageLoader;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Launcher extends Application {
 
     public static void main(String[] args) {
@@ -13,10 +16,8 @@ public class Launcher extends Application {
     }
 
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass()
-                .getResource("/view/fxml/main.fxml"));
-        stage.setTitle("JavaFX Maven Spring");
-        stage.setScene(new Scene(root));
-        stage.show();
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        StageLoader loader = context.getBean(StageLoader.class);
+        loader.loadMain().show();
     }
 }
